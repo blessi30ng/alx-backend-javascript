@@ -4,7 +4,9 @@ interface DirectorInterface {
 	workDirectorTasks(): string;
 }
 
-interface TeacherInterface extends DirectorInterface {
+interface TeacherInterface {
+	workFromHome(): string;
+        getCoffeeBreak(): string;
 	workTeacherTasks(): string;
 }
 
@@ -44,3 +46,25 @@ fuction createEmployee(salary: number | string): Director | Teacher {
 	}
 }
 
+
+function isDirector(employee: Teacher | Director): Boolean {
+	return employee instanceof Director;
+}
+
+function executeWork(employee: Teacher | Director) {
+	if (employee instanceof Director) {
+		employee.workDirectorTasks();
+	} else if (employee instanceof Teacher) {
+		employee.workTeacherTasks();
+	}
+}
+
+type Subjects = "Math" | "History";
+
+function teachClass(todayClass: Subjects): string {
+	if (todayClass === Math) {
+		return "Teaching Math";
+	} else {
+	return "Teaching History"
+	}
+}
